@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="https://i.pinimg.com/736x/78/ba/4f/78ba4f00554f48fdf46b813f832fd45a.jpg" rel="icon" type="image/x-icon">
+    <title>Mastering css in a few days with css master</title>
+    <link href="https://mingo-pro.edgeone.dev/js.style.css" rel="stylesheet">
+    <style>
+        :root {
+            --black: #000000;
+            --white: #ffffff;
+            --accent: #ffd54f;
+            --muted: #9aa4b2;
+            --container: 1200px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Inter, 'Segoe UI', Roboto, system-ui, Arial, sans-serif;
+            line-height: 1.4;
+            color: #fff;
+            background: var(--black);
+            /* REMOVED: padding-top: 15px; (This was creating a gap at the top) */
+        }
+
+        .site-header {
+            background: var(--black);
+            color: var(--white);
+            /* Optional: Add a subtle border to separate it from the hero */
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .container {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 0 1rem; /* Added horizontal padding for mobile safety */
+        }
+
+        header.site-header .bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            /* ADJUSTED: Small vertical padding to reduce height */
+            padding: 10px 0; 
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: 0.6px;
+        }
+
+        nav{
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            /* ADJUSTED: Reduced top/bottom padding from 0.5rem to 0.3rem */
+            padding: 0.3rem 0.9rem;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background .12s, color .12s;
+        }
+
+        nav a.login {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        nav a.signup {
+            background: var(--accent);
+            color: var(--black);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+        }
+
+        nav a:hover {
+            filter: brightness(.9);
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 640px) {
+            header.site-header .bar { padding: 8px 0; }
+            .logo { font-size: 1.1rem; }
+            nav a { padding: 0.3rem .6rem; font-size: .9rem; }
+        }
+
+        main {
+            /* Keep content starting right after the header */
+            padding: 0;
+        }
+
+        .hero {
+            width: 100%;
+            max-width: none;
+            /* Reduced min-height slightly so it's not a full 100vh if header is present */
+            min-height: 93vh; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.5), rgba(0,0,0,0.7));
+            z-index: 0;
+        }
+
+        .hero .content {
+            position: relative;
+            z-index: 1;
+            color: var(--white);
+            max-width: 980px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.75rem;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            color: rgba(255,255,255,0.9);
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-cta {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--black);
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.35);
+            transition: transform .12s;
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Cards section */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 4rem auto;
+        }
+
+        .card {
+            background: #111;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #222;
+            text-align: center;
+            padding-bottom: 1.5rem;
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .card h3 {
+            margin: 1.5rem 0 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .card p {
+            padding: 0 1.5rem;
+            color: var(--muted);
+            font-size: 1rem;
+        }
+
+        .site-footer {
+            background: var(--black);
+            color: var(--muted);
+            padding: 3rem 0;
+            text-align: center;
+            border-top: 1px solid #222;
+            font-size: 0.9rem;
+        }
+
+        .sele {
+            color: var(--muted);
+            text-decoration: none;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container">
+            <div class="bar">
+                <div class="logo">CSS Master</div>
+                <nav>
+                    <a href="#">Features</a>
+                    <a href="#">Pricing</a>
+                    <a href="login.html" class="login">Login</a>
+                    <a href="signup.html" class="signup">Sign Up</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="hero" style="background-image: url('https://cdn.dribbble.com/userupload/16006994/file/still-98a53dcd52e9d2b23121b11276d99bc6.png?format=webp&resize=1200x800');">
+            <div class="container">
+                <div class="content">
+                    <h1>Professional solutions for modern teams</h1>
+                    <p>We provide secure, scalable services designed to help teams move faster and deliver results.</p>
+                    <a href="signup.html" class="btn-cta">Get started for free</a>
+                </div>
+            </div>
+        </div>
+
+        <section class="cards container" id="features">
+            <div class="card">
+                <img src="https://blog.logrocket.com/wp-content/uploads/2023/06/css-full-page-background.png" alt="css introduction">
+                <h3>CSS Introduction</h3>
+                <p>Learn the fundamentals of CSS and how to style your web pages effectively.</p>
+            </div>
+            <div class="card">
+                <img src="https://i.pinimg.com/1200x/e2/07/e5/e207e540af6162e7442f82f134fbd9d2.jpg" alt="css properties">
+                <h3>CSS Properties</h3>
+                <p>Discover the various CSS properties and how to use them effectively in your projects.</p>
+            </div>
+            <div class="card">
+                <img src="https://i.pinimg.com/736x/9a/38/fa/9a38fabdd73e114d7f670c9b2062d2ce.jpg" alt="applie what you learn">
+                <h3>Apply What You Learn</h3>
+                <p>Practice and apply your CSS knowledge with hands-on exercises and real-world examples.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 Css Master. All rights reserved. <a href="https://seleman.edgeone.dev" target="_blank" class="sele"><p>Developed By <span style="color: white;">Sele</span><span style="color: rgb(95, 95, 245);">man</span></p></a></p>
+        </div>
+    </footer>
+
+</body>
+</html>
