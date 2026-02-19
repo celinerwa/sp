@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link href="https://i.pinimg.com/736x/78/ba/4f/78ba4f00554f48fdf46b813f832fd45a.jpg" rel="icon" type="image/x-icon">
     <title>Mastering css in a few days with css master</title>
-    <link href="https://mingo-pro.edgeone.dev/js.style.css" rel="stylesheet">
     <style>
         :root {
             --black: #000000;
@@ -26,27 +25,24 @@
             line-height: 1.4;
             color: #fff;
             background: var(--black);
-            /* REMOVED: padding-top: 15px; (This was creating a gap at the top) */
         }
 
         .site-header {
             background: var(--black);
             color: var(--white);
-            /* Optional: Add a subtle border to separate it from the hero */
             border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
         .container {
             max-width: var(--container);
             margin: 0 auto;
-            padding: 0 1rem; /* Added horizontal padding for mobile safety */
+            padding: 0 1rem;
         }
 
         header.site-header .bar {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            /* ADJUSTED: Small vertical padding to reduce height */
             padding: 10px 0; 
         }
 
@@ -65,7 +61,6 @@
         nav a {
             color: var(--white);
             text-decoration: none;
-            /* ADJUSTED: Reduced top/bottom padding from 0.5rem to 0.3rem */
             padding: 0.3rem 0.9rem;
             border-radius: 6px;
             font-weight: 600;
@@ -87,7 +82,7 @@
             filter: brightness(.9);
         }
 
-        /* Mobile Adjustments */
+
         @media (max-width: 640px) {
             header.site-header .bar { padding: 8px 0; }
             .logo { font-size: 1.1rem; }
@@ -95,14 +90,13 @@
         }
 
         main {
-            /* Keep content starting right after the header */
+
             padding: 0;
         }
 
         .hero {
             width: 100%;
             max-width: none;
-            /* Reduced min-height slightly so it's not a full 100vh if header is present */
             min-height: 93vh; 
             display: flex;
             align-items: center;
@@ -160,7 +154,7 @@
             transform: translateY(-3px);
         }
 
-        /* Cards section */
+
         .cards {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));

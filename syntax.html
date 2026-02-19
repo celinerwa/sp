@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="https://i.pinimg.com/736x/78/ba/4f/78ba4f00554f48fdf46b813f832fd45a.jpg" rel="icon" type="image/x-icon">
+    <title>CSS Syntax Reference — CSS Master</title>
+    <style>
+        :root{
+            --black:#000;
+            --white:#fff;
+            --accent:#ffd54f;
+            --muted:#9aa4b2;
+            --container:1200px;
+            --panel:#0f0f11;
+            --border:#222;
+        }
+        *{
+            box-sizing:border-box;
+            margin:0;
+            padding:0;
+            }
+        body{
+        font-family:Inter, 'Segoe UI', Roboto, system-ui, Arial, sans-serif;
+        background:var(--black);
+        color:var(--white);
+        line-height:1.5;
+    }
+        .container{
+            max-width:var(--container);
+            margin:0 auto;
+            padding:0 1rem;
+        }
+        header.site-header{
+            background:var(--black);
+            border-bottom:1px solid rgba(255,255,255,0.06);
+            position:sticky;
+            top:0;
+            z-index:50;
+        }
+        header .bar{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+            padding:1rem 0;
+        }
+        .logo{
+            font-weight:700;
+            background:linear-gradient(135deg,var(--accent),#ffb300);
+            webkit-background-clip:text;
+            webkit-text-fill-color:transparent;
+        }
+        nav{
+            display:flex;
+            gap:.5rem;
+            align-items:center;
+        }
+        nav a{
+            color:var(--white);
+            text-decoration:none;
+            padding:.4rem .7rem;
+            border-radius:6px;
+            font-weight:600;
+        }
+        nav a:hover{
+            filter:brightness(.95);
+        }
+        main{padding:2rem 0}
+        h1{
+            font-size:2.5rem;
+            margin-bottom:.5rem;
+        }
+        .intro{
+            color:var(--muted);
+            margin-bottom:1.5rem;
+        }
+        .section{
+            margin-bottom:2.5rem;
+        }
+        .section h2{
+            color:var(--accent);
+            margin-bottom:.75rem;
+        }
+        .grid{
+            display:grid;
+            grid-template-columns:1fr 420px;
+            gap:1.5rem;
+        }
+        .panel{
+            background:var(--panel);
+            border:1px solid var(--border);
+            padding:1rem;
+            border-radius:10px;
+        }
+        pre{
+            background:#080808;
+            border-radius:8px;
+            padding:1rem;
+            overflow:auto;
+            border:1px solid rgba(255,255,255,0.03);
+            font-size:0.9rem;
+        }
+        code{
+            font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', 'Segoe UI Mono', monospace;
+            color:#dfe7ff;
+        }
+        .preview{
+            padding:1rem;
+            border-radius:8px;
+            border:1px dashed rgba(255,255,255,0.03);
+            background:linear-gradient(180deg,rgba(255,255,255,0.01),transparent);
+        }
+        .vars-demo{
+            padding:1rem;
+            border-radius:8px;
+        }
+        /* small helpers for live previews */
+        .box{
+            padding:1rem;
+            border-radius:6px;
+            background:#111;
+            margin-bottom:.75rem;
+        }
+        .flex-demo{
+            display:flex;
+            gap:0.75rem;
+        }
+        .flex-demo .item{
+            background:linear-gradient(135deg,#ffd54f,#ffb300);
+            color:#000;
+            padding:.6rem 1rem;
+            border-radius:6px;
+            font-weight:700;
+        }
+        .grid-demo{
+            display:grid;
+            grid-template-columns:repeat(3,1fr);
+            gap:.6rem;
+        }
+        .grid-demo .cell{
+            background:linear-gradient(135deg,#3aa0ff,#a24bff);
+            padding:1rem;
+            border-radius:6px;
+            color:#fff;
+            text-align:center;
+        }
+        .transform-demo .tbox{
+            width:120px;
+            height:80px;
+            background:linear-gradient(135deg,#ffd54f,#ffb300);
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            border-radius:8px;
+            color:#000;
+            font-weight:700;
+            margin-right:1rem;
+        }
+        .gradient-demo{
+            height:80px;
+            border-radius:8px;
+        }
+        .btn-sample{
+            display:inline-block;
+            padding:.6rem 1rem;
+            border-radius:8px;
+            font-weight:700;
+        }
+        /* responsive */
+        @media (max-width:980px){.grid{grid-template-columns:1fr}.grid-demo{grid-template-columns:repeat(2,1fr)}.grid-demo .cell{font-size:.9rem}}
+        @media (max-width:520px){.grid-demo{grid-template-columns:1fr}}
+
+        .sele {
+            color: var(--muted);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .sele:hover {
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <div class="bar">
+                <div class="logo">CSS Master</div>
+                <nav>
+                    <a href="home.html">Home</a>
+                    <a href="syntax.html">Syntax</a>
+                    <a href="properties.html">Properties</a>
+                    <a href="login.html">Login</a>
+                    <a href="signup.html" class="signup">Sign Up</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <h1>CSS Syntax Reference</h1>
+        <p class="intro">This page shows the actual CSS syntax for the concepts demonstrated on the home page. Each section contains a short explanation, a code example, and a live preview so you can see the styles in action.</p>
+
+        <!-- VARIABLES -->
+        <section class="section">
+            <div class="grid">
+                <div>
+                    <h2>Custom Properties (Variables)</h2>
+                    <p class="intro">Define variables inside <code>:root</code> and reuse them throughout your stylesheet for consistency.</p>
+                    <div class="panel">
+                        <pre><code>:root {
+  --accent: #ffd54f;
+  --muted: #9aa4b2;
+}
+
+.button {
+  background: var(--accent);
+  color: #000;
+  padding: .6rem 1rem;
+}
+</code></pre>
+                    </div>
+                </div>
+                <aside class="panel">
+                    <div class="vars-demo" style="background:linear-gradient(180deg,var(--accent),#ffb300);color:#000;font-weight:700">Accent background using <code>var(--accent)</code></div>
+                    <div style="height:8px"></div>
+                    <div class="preview panel">
+                        <div class="box">This box uses <code>var(--muted)</code> for muted text color</div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- SELECTORS -->
+        <section class="section">
+            <div class="grid">
+                <div>
+                    <h2>Selectors</h2>
+                    <p class="intro">Common selectors: element, class, id, attribute, pseudo-classes and pseudo-elements.</p>
+                    <div class="panel">
+                        <pre><code>/* element */
+button { padding:.6rem }
+
+/* class */
+.btn { background:#ffd54f }
+
+/* id */
+#main { max-width:1200px }
+
+/* attribute */
+a[target] { text-decoration:underline }
+
+/* pseudo */
+a:hover { opacity:.9 }
+</code></pre>
+                    </div>
+                </div>
+                <aside class="panel">
+                    <div class="preview">
+                        <button class="btn-sample" style="background:var(--accent);color:#000">.btn</button>
+                        <div style="height:.6rem"></div>
+                        <a href="#" target="_blank" style="color:var(--accent)" title="pseudo">a:hover (hover me)</a>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- BOX MODEL -->
+        <section class="section">
+            <div class="grid">
+                <div>
+                    <h2>Box Model</h2>
+                    <p class="intro">Content, padding, border and margin form the box model. Use DevTools to inspect spacing.</p>
+                    <div class="panel">
+                        <pre><code>.card {
+  padding: 1rem; /* space inside */
+  border: 1px solid #222; /* border */
+  margin: 1rem; /* outer spacing */
+}
+</code></pre>
+                    </div>
+                </div>
+                <aside class="panel">
+                    <div class="preview">
+                        <div class="box" style="padding:1rem;border:2px solid #333;margin:0">Content area (padding + border)</div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- FLEXBOX -->
+        <section class="section">
+            <div class="grid">
+                <div>
+                    <h2>Flexbox</h2>
+                    <p class="intro">Flexbox lets you align items along a single axis easily.</p>
+                    <div class="panel">
+                        <pre><code>.row {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.item { flex: 1 }
+</code></pre>
+                    </div>
+                </div>
+                <aside class="panel">
+                    <div class="preview">
+                        <div class="flex-demo">
+                            <div class="item box" style="flex:2;background:linear-gradient(135deg,#ffd54f,#ffb300);color:#000">Flex 2</div>
+                            <div class="item box" style="flex:1">Flex 1</div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- GRID -->
+        <section class="section">
+            <div class="grid">
+                <div>
+                    <h2>CSS Grid</h2>
+                    <p class="intro">Grid is powerful for two-dimensional layouts.</p>
+                    <div class="panel">
+                        <pre><code>.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+</code></pre>
+                    </div>
+                </div>
+                <aside class="panel">
+                    <div class="preview">
+                        <div class="grid-demo">
+                            <div class="cell">1</div>
+                            <div class="cell">2</div>
+                            <div class="cell">3</div>
+                            <div class="cell">4</div>
+                            <div class="cell">5</div>
+                            <div class="cell">6</div>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- TRANSFORMS -->
+        <section class="section">
+            <div class="grid">
+                <div>
+                    <h2>Transforms</h2>
+                    <p class="intro">Use <code>transform</code> to rotate, scale, skew and translate elements.</p>
+                    <div class="panel">
+                        <pre><code>.spin { transform: rotate(45deg); }
+.scale { transform: scale(1.15); }
+.translate { transform: translateX(10px); }
+</code></pre>
+                    </div>
+                </div>
+                <aside class="panel transform-demo">
+                    <div class="tbox" style="transform:rotate(10deg)">rotated</div>
+                    <div class="tbox" style="transform:scale(1.05)">scaled</div>
+                    <div class="tbox" style="transform:translateY(-6px)">moved</div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- GRADIENTS -->
+        <section class="section">
+            <div class="grid">
+                <div>
+                    <h2>Gradients</h2>
+                    <p class="intro">Linear, radial and conic gradients create smooth color transitions.</p>
+                    <div class="panel">
+                        <pre><code>background: linear-gradient(135deg,#ffd54f,#ffb300);
+background: radial-gradient(circle,#1abc9c,#16a085);
+background: conic-gradient(from 45deg,#9b59b6,#e74c3c,#f39c12);
+</code></pre>
+                    </div>
+                </div>
+                <aside class="panel">
+                    <div class="preview gradient-demo" style="background:linear-gradient(135deg,#ffd54f,#ffb300)"></div>
+                    <div style="height:.6rem"></div>
+                    <div class="preview gradient-demo" style="background:radial-gradient(circle,#1abc9c,#16a085)"></div>
+                </aside>
+            </div>
+        </section>
+
+        <!-- BUTTON STYLES -->
+        <section class="section">
+            <div class="grid">
+                <div>
+                    <h2>Buttons</h2>
+                    <p class="intro">Button patterns: primary, secondary, and icon buttons.</p>
+                    <div class="panel">
+                        <pre><code>.btn-primary{ background:var(--accent); color:#000 }
+.btn-secondary{ border:1px solid var(--accent); background:transparent }
+</code></pre>
+                    </div>
+                </div>
+                <aside class="panel">
+                    <div class="preview">
+                        <button class="btn-sample" style="background:var(--accent);color:#000">Primary</button>
+                        <button class="btn-sample" style="background:transparent;border:1px solid var(--accent);margin-left:.6rem">Secondary</button>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+    </main>
+
+    <footer style="background:var(--black);border-top:1px solid var(--border);padding:2rem 0;margin-top:2rem">
+        <div class="container" style="text-align:center;color:var(--muted)">&copy; 2026 CSS Master — Syntax reference. <a href="https://seleman.edgeone.dev" target="_blank" class="sele">Developed By <span style="color: white;">Sele</span><span style="color: rgb(95, 95, 245);">man</span></a>.</p></div>
+    </footer>
+
+</body>
+</html>

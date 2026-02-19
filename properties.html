@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="https://i.pinimg.com/736x/78/ba/4f/78ba4f00554f48fdf46b813f832fd45a.jpg" rel="icon" type="image/x-icon">
+  <title>CSS Properties Reference — CSS Master</title>
+  <style>
+    :root{
+        --black:#000;
+        --white:#fff;
+        --accent:#ffd54f;
+        --muted:#9aa4b2;
+        --container:1200px;
+        --panel:#0f0f11;
+        --border:#222;
+    }
+    *{
+        box-sizing:border-box;
+        margin:0;padding:0;
+    }
+    body{
+        font-family:Inter, 'Segoe UI', Roboto, system-ui, Arial, sans-serif;
+        background:var(--black);
+        color:var(--white);
+        line-height:1.5;
+    }
+    .container{
+        max-width:var(--container);
+        margin:0 auto;
+        padding:1rem;
+    }
+    header.site-header{
+        background:var(--black);
+        border-bottom:1px solid rgba(255,255,255,0.06);
+        position:sticky;
+        top:0;z-index:50;
+    }
+    header .bar{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        padding:1rem 0;
+    }
+    .logo{
+        font-weight:700;
+        background:linear-gradient(135deg,var(--accent),#ffb300);
+        -webkit-background-clip:text;
+        -webkit-text-fill-color:transparent;
+    }
+    nav{
+        display:flex;
+        gap:.5rem;
+        align-items:center;
+    }
+    nav a{
+        color:var(--white);
+        text-decoration:none;
+        padding:.4rem .7rem;
+        border-radius:6px;
+        font-weight:600;
+    }
+    nav a:hover{
+        filter:brightness(.95);
+    }
+    main{
+        padding:2rem 0;
+    }
+    h1{
+        font-size:2rem;
+        margin-bottom:.5rem;
+    }
+    .intro{
+        color:var(--muted);
+        margin-bottom:1rem;
+    }
+    .search{
+        margin:1rem 0;
+        display:flex;
+        gap:.5rem;
+    }
+    .search input{
+        flex:1;padding:.6rem 1rem;
+        border-radius:8px;
+        border:1px solid var(--border);
+        background:#0b0b0b;
+        color:var(--white);
+    }
+    .section{
+        margin-bottom:2rem;
+    }
+
+    .sele {
+            color: var(--muted);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .sele:hover {
+            color: var(--accent);
+        }
+    .props{
+        display:grid;
+        grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+        gap:1rem;
+    }
+    .prop{
+        background:var(--panel);
+        border:1px solid var(--border);
+        padding:1rem;
+        border-radius:10px;
+    }
+    .prop h3{
+        margin-bottom:.5rem;
+        font-size:1rem;
+        color:var(--accent);
+    }
+    .muted{
+        color:var(--muted);
+        font-size:.95rem;
+    }
+    .val{
+        display:block;
+        margin-top:.5rem;
+        padding:.5rem;
+        border-radius:6px;
+        background:#080808;
+        font-family:ui-monospace,Menlo,monospace;
+        font-size:.9rem;
+    }
+    .category{
+        margin-top:.75rem;
+        color:var(--muted);
+        font-size:.9rem;
+    }
+    footer{
+        margin-top:2rem;
+        padding:2rem 0;
+        border-top:1px solid var(--border);
+        color:var(--muted);
+        text-align:center;
+    }
+    @media (max-width:720px){.props{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}}
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="bar">
+        <div class="logo">CSS Master</div>
+        <nav>
+          <a href="home.html">Home</a>
+          <a href="syntax.html">Syntax</a>
+          <a href="properties.html">Properties</a>
+          <a href="login.html">Login</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <h1>CSS Properties Reference</h1>
+    <p class="intro">A curated list of commonly used CSS properties with typical values and a short description. Use the search box to filter properties.</p>
+
+    <div class="search">
+      <input id="prop-search" placeholder="Search properties (e.g. display, color, margin)..." aria-label="Search CSS properties">
+      <select id="category-filter" style="padding:.6rem;border-radius:8px;background:#0b0b0b;border:1px solid var(--border);color:var(--white)">
+        <option value="all">All categories</option>
+        <option value="layout">Layout</option>
+        <option value="box">Box model</option>
+        <option value="typography">Typography</option>
+        <option value="background">Background</option>
+        <option value="border">Border</option>
+        <option value="effects">Effects</option>
+        <option value="flexgrid">Flex & Grid</option>
+        <option value="animation">Animation & Transition</option>
+        <option value="misc">Miscellaneous</option>
+      </select>
+    </div>
+
+    <section class="props" id="props-list">
+
+      <!-- Layout -->
+      <div class="prop" data-cat="layout" data-name="display">
+        <h3>display</h3>
+        <div class="muted">Values: block | inline | inline-block | flex | grid | none | inline-flex | inline-grid</div>
+        <div class="val">Sets the element's display type, controlling layout behavior.</div>
+      </div>
+
+      <div class="prop" data-cat="layout" data-name="position">
+        <h3>position</h3>
+        <div class="muted">Values: static | relative | absolute | fixed | sticky</div>
+        <div class="val">Specifies the positioning method used for an element.</div>
+      </div>
+
+      <div class="prop" data-cat="layout" data-name="top, right, bottom, left">
+        <h3>top / right / bottom / left</h3>
+        <div class="muted">Values: auto | <length> | <percentage></div>
+        <div class="val">Offsets used with positioned elements to move them from their normal position.</div>
+      </div>
+
+      <div class="prop" data-cat="layout" data-name="float">
+        <h3>float</h3>
+        <div class="muted">Values: left | right | none</div>
+        <div class="val">Floats an element to the left or right, allowing text to wrap around it (legacy layout).</div>
+      </div>
+
+      <div class="prop" data-cat="layout" data-name="clear">
+        <h3>clear</h3>
+        <div class="muted">Values: none | left | right | both | inline-start | inline-end</div>
+        <div class="val">Specifies which sides of an element where floating elements are not allowed to float.</div>
+      </div>
+
+      <div class="prop" data-cat="box" data-name="width">
+        <h3>width / height</h3>
+        <div class="muted">Values: auto | <length> | <percentage> | max-content | min-content</div>
+        <div class="val">Sets the content width/height of an element.</div>
+      </div>
+
+      <div class="prop" data-cat="box" data-name="max-width">
+        <h3>max-width / max-height</h3>
+        <div class="muted">Values: none | <length> | <percentage></div>
+        <div class="val">Limits the maximum size of an element.</div>
+      </div>
+
+      <div class="prop" data-cat="box" data-name="min-width">
+        <h3>min-width / min-height</h3>
+        <div class="muted">Values: auto | <length> | <percentage></div>
+        <div class="val">Sets the minimum size an element can shrink to.</div>
+      </div>
+
+      <div class="prop" data-cat="box" data-name="box-sizing">
+        <h3>box-sizing</h3>
+        <div class="muted">Values: content-box | border-box</div>
+        <div class="val">Controls how width and height are calculated (include border/padding or not).</div>
+      </div>
+
+      <div class="prop" data-cat="box" data-name="margin">
+        <h3>margin</h3>
+        <div class="muted">Values: <length> | <percentage> | auto</div>
+        <div class="val">Sets outer spacing around an element (shorthand for margin-top/right/bottom/left).</div>
+      </div>
+
+      <div class="prop" data-cat="box" data-name="padding">
+        <h3>padding</h3>
+        <div class="muted">Values: <length> | <percentage></div>
+        <div class="val">Sets inner spacing between content and border (shorthand for padding-top/right/bottom/left).</div>
+      </div>
+
+      <div class="prop" data-cat="border" data-name="border">
+        <h3>border</h3>
+        <div class="muted">Values: <border-style> <border-width> <color> | none</div>
+        <div class="val">Shorthand to set border-width, style, and color for all four sides.</div>
+      </div>
+
+      <div class="prop" data-cat="border" data-name="border-radius">
+        <h3>border-radius</h3>
+        <div class="muted">Values: <length> | <percentage></div>
+        <div class="val">Rounds the corners of an element's outer border edge.</div>
+      </div>
+
+      <div class="prop" data-cat="border" data-name="box-shadow">
+        <h3>box-shadow</h3>
+        <div class="muted">Values: offset-x offset-y blur spread color inset?</div>
+        <div class="val">Adds shadow effects around an element's frame; can be inset or outset.</div>
+      </div>
+
+      <div class="prop" data-cat="typography" data-name="color">
+        <h3>color</h3>
+        <div class="muted">Values: color keywords | hex | rgb() | rgba() | hsl() | currentColor</div>
+        <div class="val">Sets the foreground (text) color of an element.</div>
+      </div>
+
+      <div class="prop" data-cat="typography" data-name="font-family">
+        <h3>font-family</h3>
+        <div class="muted">Values: family-name | generic-family</div>
+        <div class="val">Specifies prioritized list of font family names and/or generic family names.</div>
+      </div>
+
+      <div class="prop" data-cat="typography" data-name="font-size">
+        <h3>font-size</h3>
+        <div class="muted">Values: <absolute-size> | <relative-size> | <length> | <percentage></div>
+        <div class="val">Specifies the size of the font.</div>
+      </div>
+
+      <div class="prop" data-cat="typography" data-name="font-weight">
+        <h3>font-weight</h3>
+        <div class="muted">Values: normal | bold | bolder | lighter | 100..900</div>
+        <div class="val">Sets the weight (boldness) of the font.</div>
+      </div>
+
+      <div class="prop" data-cat="typography" data-name="line-height">
+        <h3>line-height</h3>
+        <div class="muted">Values: normal | <number> | <length> | <percentage></div>
+        <div class="val">Sets the height of a line box; controls spacing between lines of text.</div>
+      </div>
+
+      <div class="prop" data-cat="typography" data-name="text-align">
+        <h3>text-align</h3>
+        <div class="muted">Values: left | right | center | justify | start | end</div>
+        <div class="val">Specifies horizontal alignment of inline content inside a block.</div>
+      </div>
+
+      <div class="prop" data-cat="typography" data-name="text-decoration">
+        <h3>text-decoration</h3>
+        <div class="muted">Values: none | underline | overline | line-through | blink | color | style</div>
+        <div class="val">Shorthand for setting decorations like underline and color/ style.</div>
+      </div>
+
+      <div class="prop" data-cat="background" data-name="background">
+        <h3>background</h3>
+        <div class="muted">Values: color | image | position | size | repeat | attachment | clip | origin</div>
+        <div class="val">Shorthand for background-color, image, position, size, repeat, and attachment.</div>
+      </div>
+
+      <div class="prop" data-cat="background" data-name="background-image">
+        <h3>background-image</h3>
+        <div class="muted">Values: url() | linear-gradient() | radial-gradient() | none</div>
+        <div class="val">Sets one or more background images for an element.</div>
+      </div>
+
+      <div class="prop" data-cat="background" data-name="background-size">
+        <h3>background-size</h3>
+        <div class="muted">Values: auto | cover | contain | <length> | <percentage></div>
+        <div class="val">Specifies the size of the background images.</div>
+      </div>
+
+      <div class="prop" data-cat="effects" data-name="opacity">
+        <h3>opacity</h3>
+        <div class="muted">Values: 0.0 - 1.0</div>
+        <div class="val">Sets the transparency level of an element (and its children).</div>
+      </div>
+
+      <div class="prop" data-cat="effects" data-name="filter">
+        <h3>filter</h3>
+        <div class="muted">Values: none | blur() | brightness() | contrast() | drop-shadow() | hue-rotate() | saturate()</div>
+        <div class="val">Applies graphical effects like blur and color shifts to an element.</div>
+      </div>
+
+      <div class="prop" data-cat="flexgrid" data-name="flex">
+        <h3>flex</h3>
+        <div class="muted">Values: none | auto | <number> | <length></div>
+        <div class="val">Shorthand for flex-grow, flex-shrink and flex-basis on flex items.</div>
+      </div>
+
+      <div class="prop" data-cat="flexgrid" data-name="justify-content">
+        <h3>justify-content</h3>
+        <div class="muted">Values: flex-start | flex-end | center | space-between | space-around | space-evenly</div>
+        <div class="val">Defines alignment along the main axis in flex or grid containers.</div>
+      </div>
+
+      <div class="prop" data-cat="flexgrid" data-name="align-items">
+        <h3>align-items</h3>
+        <div class="muted">Values: stretch | flex-start | flex-end | center | baseline</div>
+        <div class="val">Aligns flex items along the cross axis (vertical by default).</div>
+      </div>
+
+      <div class="prop" data-cat="flexgrid" data-name="grid-template-columns">
+        <h3>grid-template-columns / rows</h3>
+        <div class="muted">Values: <track-list> | repeat() | auto | auto-fit | auto-fill</div>
+        <div class="val">Defines the columns (or rows) of the grid container.</div>
+      </div>
+
+      <div class="prop" data-cat="animation" data-name="transition">
+        <h3>transition</h3>
+        <div class="muted">Values: <property> <duration> <timing-function> <delay></div>
+        <div class="val">Shorthand to animate changes to CSS properties smoothly.</div>
+      </div>
+
+      <div class="prop" data-cat="animation" data-name="animation">
+        <h3>animation</h3>
+        <div class="muted">Values: name duration timing-function delay iteration-count direction fill-mode</div>
+        <div class="val">Shorthand for CSS animations using @keyframes.</div>
+      </div>
+
+      <div class="prop" data-cat="misc" data-name="cursor">
+        <h3>cursor</h3>
+        <div class="muted">Values: auto | default | pointer | move | text | wait | not-allowed | url()</div>
+        <div class="val">Specifies the mouse cursor displayed when pointing over an element.</div>
+      </div>
+
+      <div class="prop" data-cat="misc" data-name="overflow">
+        <h3>overflow</h3>
+        <div class="muted">Values: visible | hidden | scroll | auto</div>
+        <div class="val">Controls what happens to content that overflows an element's box.</div>
+      </div>
+
+      <div class="prop" data-cat="misc" data-name="visibility">
+        <h3>visibility</h3>
+        <div class="muted">Values: visible | hidden | collapse</div>
+        <div class="val">Controls whether an element is visible, but still takes up space when hidden.</div>
+      </div>
+
+      <div class="prop" data-cat="misc" data-name="z-index">
+        <h3>z-index</h3>
+        <div class="muted">Values: auto | <integer></div>
+        <div class="val">Controls the stacking order of positioned elements.</div>
+      </div>
+
+    </section>
+
+    <footer>&copy; 2026 CSS Master — Properties reference. <a href="https://seleman.edgeone.dev" target="_blank" class="sele">Developed By <span style="color: white;">Sele</span><span style="color: rgb(95, 95, 245);">man</span></a>.</p></footer>
+  </main>
+
+  <script>
+    // simple search & filter
+    (function(){
+      const input = document.getElementById('prop-search');
+      const filter = document.getElementById('category-filter');
+      const props = Array.from(document.querySelectorAll('.prop'));
+      function applyFilter(){
+        const q = input.value.trim().toLowerCase();
+        const cat = filter.value;
+        props.forEach(p=>{
+          const name = (p.dataset.name||'').toLowerCase();
+          const inName = !q || name.indexOf(q)!==-1;
+          const inCat = (cat==='all') || (p.dataset.cat===cat);
+          p.style.display = (inName && inCat) ? 'block' : 'none';
+        });
+      }
+      input.addEventListener('input', applyFilter);
+      filter.addEventListener('change', applyFilter);
+    })();
+  </script>
+</body>
+</html>

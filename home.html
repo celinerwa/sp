@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link href="https://i.pinimg.com/736x/78/ba/4f/78ba4f00554f48fdf46b813f832fd45a.jpg" rel="icon" type="image/x-icon">
+    <title>CSS Showcase — Learn CSS Visually</title>
+    <style>
+        /* ========== CSS VARIABLES ========== */
+        :root {
+            --black: #000000;
+            --white: #ffffff;
+            --accent: #ffd54f;
+            --muted: #9aa4b2;
+            --container: 1200px;
+            --light-dark: #111;
+            --border-light: #222;
+            --shadow-sm: 0 2px 6px rgba(0,0,0,0.12);
+            --shadow-md: 0 10px 30px rgba(0,0,0,0.241);
+            --shadow-lg: 0 20px 50px rgba(0,0,0,0.35);
+        }
+
+        /* ========== RESET & BASE STYLES ========== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Inter, 'Segoe UI', Roboto, system-ui, Arial, sans-serif;
+            line-height: 1.6;
+            color: #fff;
+            background: var(--black);
+        }
+
+        /* ========== HEADER & NAVIGATION ========== */
+        .site-header {
+            background: var(--black);
+            color: var(--white);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: background .3s ease;
+        }
+
+        .site-header:hover {
+            background: #0a0a0a;
+        }
+
+        .container {
+            max-width: var(--container);
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        header.site-header .bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: 0.6px;
+            background: linear-gradient(135deg, var(--accent), #ffb300);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            padding: 0.5rem 0.9rem;
+            border-radius: 6px;
+            font-weight: 600;
+            transition: background .12s, color .12s;
+        }
+
+        nav a.login {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        nav a.signup {
+            background: var(--accent);
+            color: var(--black);
+            box-shadow: var(--shadow-sm);
+        }
+
+        nav a:hover {
+            filter: brightness(.9);
+            transform: translateY(-2px);
+            transition: all .2s;
+        }
+
+        /* Styled resource dropdown in the nav */
+        .select-wrap {
+            position: relative;
+        }
+
+        .nav-select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+            color: var(--white);
+            padding: 0.45rem 1.6rem 0.45rem 0.9rem;
+            border-radius: 6px;
+            border: 1px solid rgba(255,255,255,0.06);
+            font-weight: 600;
+            cursor: pointer;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 0.5rem center;
+            background-size: 12px;
+        }
+
+        .nav-select:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255,213,79,0.12);
+        }
+
+        .nav-select option {
+            color: #000;
+        }
+
+        /* ========== RESPONSIVE HEADER ========== */
+        @media (max-width: 640px) {
+            header.site-header .bar {
+                padding: 0.75rem 0;
+            }
+            .logo {
+                font-size: 1.1rem;
+            }
+            nav a {
+                padding: 0.45rem .7rem;
+                font-size: .95rem;
+            }
+        }
+
+        /* ========== HERO SECTION ========== */
+        main {
+            padding: 0;
+        }
+
+        .hero {
+            width: 100%;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: url('https://cdn.dribbble.com/userupload/16006994/file/still-98a53dcd52e9d2b23121b11276d99bc6.png?format=webp&resize=1200x800') center/cover no-repeat;
+            opacity: 0.15;
+            z-index: 0;
+        }
+
+        .hero .content {
+            position: relative;
+            z-index: 1;
+            color: var(--white);
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 3rem 1rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            color: rgba(255,255,255,0.8);
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn-cta {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--black);
+            padding: 0.85rem 2rem;
+            border-radius: 8px;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: var(--shadow-lg);
+            transition: transform .2s, box-shadow .2s;
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+        }
+
+        /* ========== TYPOGRAPHY SECTION ========== */
+        .section {
+            padding: 4rem 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--accent);
+            text-align: center;
+        }
+
+        .section-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        /* Typography showcase */
+        .typography-demo {
+            background: var(--light-dark);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-light);
+        }
+
+        .typography-demo h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--white);
+        }
+
+        .typography-demo p {
+            color: var(--muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .text-large { font-size: 2.5rem; }
+        .text-medium { font-size: 1.75rem; }
+        .text-small { font-size: 0.85rem; }
+        .text-bold { font-weight: 700; }
+        .text-italic { font-style: italic; }
+        .text-underline { text-decoration: underline; }
+
+        /* ========== COLOR PALETTE ========== */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .color-box {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            transition: transform .3s;
+        }
+
+        .color-box:hover {
+            transform: scale(1.05);
+        }
+
+        .color-sample {
+            height: 120px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding: 1rem;
+            color: var(--black);
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .color-name {
+            background: var(--light-dark);
+            padding: 0.75rem;
+            text-align: center;
+            color: var(--white);
+            font-size: 0.9rem;
+        }
+
+        .color-black { background: var(--black); }
+        .color-white { background: var(--white); }
+        .color-accent { background: var(--accent); color: var(--black); }
+        .color-muted { background: var(--muted); color: var(--white); }
+        .color-light-dark { background: var(--light-dark); color: var(--white); }
+
+        /* ========== FLEXBOX SECTION ========== */
+        .flexbox-demo {
+            background: var(--light-dark);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .flex-container {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .flex-item {
+            background: rgba(255, 213, 79, 0.2);
+            border: 2px solid var(--accent);
+            padding: 1.5rem;
+            border-radius: 6px;
+            flex: 1;
+            min-width: 100px;
+            text-align: center;
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        /* ========== GRID SECTION ========== */
+        .grid-demo {
+            background: var(--light-dark);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .grid-item {
+            background: linear-gradient(135deg, #1f1f1f, #2a2a2a);
+            border: 1px solid var(--border-light);
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            color: var(--white);
+            font-weight: 600;
+            transition: all .3s;
+        }
+
+        .grid-item:hover {
+            background: linear-gradient(135deg, var(--accent), #ffb300);
+            color: var(--black);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* ========== SHADOWS & BORDERS ========== */
+        .shadow-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .shadow-box {
+            padding: 2rem;
+            border-radius: 8px;
+            background: var(--light-dark);
+            text-align: center;
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .shadow-sm-demo { box-shadow: var(--shadow-sm); }
+        .shadow-md-demo { box-shadow: var(--shadow-md); }
+        .shadow-lg-demo { box-shadow: var(--shadow-lg); }
+        .border-accent { border: 3px solid var(--accent); }
+        .border-rounded { border-radius: 20px; }
+        .border-dashed { border: 2px dashed rgba(255, 213, 79, 0.5); }
+
+        /* ========== TRANSITIONS & TRANSFORMS ========== */
+        .transform-demo {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .transform-box {
+            background: var(--light-dark);
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            color: var(--white);
+            font-weight: 600;
+            border: 1px solid var(--border-light);
+            transition: all .3s ease;
+        }
+
+        .transform-scale:hover {
+            transform: scale(1.15);
+        }
+
+        .transform-rotate:hover {
+            transform: rotate(360deg);
+        }
+
+        .transform-skew:hover {
+            transform: skewY(5deg);
+        }
+
+        .transform-translate:hover {
+            transform: translateX(10px) translateY(-10px);
+        }
+
+        /* ========== GRADIENT SHOWCASE ========== */
+        .gradient-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .gradient-box {
+            height: 150px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 700;
+            font-size: 0.85rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+            box-shadow: var(--shadow-md);
+        }
+
+        .grad-linear { background: linear-gradient(135deg, #ffd54f, #ffb300); }
+        .grad-radial { background: radial-gradient(circle, #1abc9c, #16a085); }
+        .grad-conic { background: conic-gradient(from 45deg, #9b59b6, #e74c3c, #f39c12, #9b59b6); }
+        .grad-multi { background: linear-gradient(45deg, #3498db, #8e44ad, #e74c3c); }
+
+
+        .buttons-demo {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all .3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: var(--black);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--accent);
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #1abc9c, #16a085);
+            color: var(--white);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: var(--white);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+
+        .cards-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: var(--light-dark);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+            transition: all .3s;
+        }
+
+        .card:hover {
+            border-color: var(--accent);
+            box-shadow: var(--shadow-lg);
+            transform: translateY(-5px);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #3498db, #9b59b6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+            color: var(--white);
+        }
+
+        .card p {
+            color: var(--muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .card a {
+            display: inline-block;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 1rem;
+            transition: color .2s;
+        }
+
+        .card a:hover {
+            color: #ffb300;
+        }
+
+
+        .site-footer {
+            background: var(--black);
+            color: var(--muted);
+            padding: 3rem 0;
+            text-align: center;
+            border-top: 1px solid var(--border-light);
+            font-size: 0.9rem;
+        }
+
+        .sele {
+            color: var(--muted);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .sele:hover {
+            color: var(--accent);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section h2 {
+                font-size: 1.75rem;
+            }
+
+            .section {
+                padding: 2rem 0;
+            }
+
+            .flex-container {
+                flex-direction: column;
+            }
+
+            .flex-item {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                min-height: 60vh;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .btn-cta {
+                padding: 0.7rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="container">
+            <div class="bar">
+                <div class="logo">CSS Master</div>
+                <nav>
+                    <a href="syntax/.html">syntax</a>
+                    <a href="properties/.html">properties</a>
+                    <div class="select-wrap">
+                        <select id="resource-select" class="nav-select" aria-label="External resources">
+                            <option value="">Resources</option>
+                            <option value="https://www.w3schools.com/css/">W3Schools</option>
+                            <option value="https://developer.mozilla.org/en-US/docs/Web/CSS">MDN Web Docs</option>
+                            <option value="https://css-tricks.com/">CSS-Tricks</option>
+                        </select>
+                    </div>
+                    <a href="login.html" class="login">Login</a>
+                    <a href="signup.html" class="signup">Sign Up</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- HERO SECTION -->
+        <section class="hero">
+            <div class="container">
+                <div class="content">
+                    <h1>CSS Visual Guide</h1>
+                    <p>Understand CSS styling concepts through interactive examples and demonstrations</p>
+                    <a href="https://vscode.dev/" class="btn-cta">Start practicing CSS</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- TYPOGRAPHY SECTION -->
+        <section class="section container">
+            <h2>📝 Typography</h2>
+            <p style="text-align: center; color: var(--muted); margin-bottom: 2rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                Typography is the art of arranging type to make text readable and visually appealing. Good typography ensures your content is easy to read and guides users through your page with a clear visual hierarchy. CSS gives you powerful tools to control fonts, sizes, spacing, and styling.
+            </p>
+            <div class="section-content">
+                <div class="typography-demo">
+                    <h3 class="text-large">Large Heading</h3>
+                    <p>Font size: 2.5rem with bold weight</p>
+                </div>
+                <div class="typography-demo">
+                    <h3 class="text-medium">Medium Heading</h3>
+                    <p>Font size: 1.75rem, clean and readable</p>
+                </div>
+                <div class="typography-demo">
+                    <h3>Normal Text</h3>
+                    <p class="text-small">Smaller text at 0.85rem, maintains readability with proper line-height</p>
+                </div>
+                <div class="typography-demo">
+                    <h3 class="text-bold">Bold Text</h3>
+                    <p>Font weight: 700 for emphasis</p>
+                </div>
+                <div class="typography-demo">
+                    <h3 class="text-italic">Italic Style</h3>
+                    <p>Font style: italic for emphasis</p>
+                </div>
+                <div class="typography-demo">
+                    <h3 class="text-underline">Underline Text</h3>
+                    <p>Text decoration: underline</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- COLOR PALETTE -->
+        <section class="section container">
+            <h2>🎨 Color Palette</h2>
+            <p style="text-align: center; color: var(--muted); margin-bottom: 1.5rem;">
+                CSS Variables provide a consistent color system throughout the design
+            </p>
+            <div class="color-grid">
+                <div class="color-box">
+                    <div class="color-sample color-black">#000000</div>
+                    <div class="color-name">Black</div>
+                </div>
+                <div class="color-box">
+                    <div class="color-sample color-white">#FFFFFF</div>
+                    <div class="color-name">White</div>
+                </div>
+                <div class="color-box">
+                    <div class="color-sample color-accent">#FFD54F</div>
+                    <div class="color-name">Accent</div>
+                </div>
+                <div class="color-box">
+                    <div class="color-sample color-muted">#9AA4B2</div>
+                    <div class="color-name">Muted</div>
+                </div>
+                <div class="color-box">
+                    <div class="color-sample color-light-dark">#111111</div>
+                    <div class="color-name">Light Dark</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FLEXBOX SECTION -->
+        <section class="section container">
+            <h2>🔄 Flexbox Layout</h2>
+            <p style="text-align: center; color: var(--muted); margin-bottom: 2rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                Flexbox (Flexible Box Layout) is a one-dimensional layout method for arranging items in rows or columns. It's perfect for building responsive navigation bars, centered content, and flexible spacing. Unlike traditional floats and positioning, Flexbox automatically handles alignment and distribution of space.
+            </p>
+            <div class="flexbox-demo">
+                <h3>Flex Container with Gap</h3>
+                <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 1.5rem;">These items are displayed using flexbox. They automatically wrap on smaller screens and maintain equal spacing.</p>
+                <div class="flex-container">
+                    <div class="flex-item">Item 1</div>
+                    <div class="flex-item">Item 2</div>
+                    <div class="flex-item">Item 3</div>
+                    <div class="flex-item">Item 4</div>
+                </div>
+            </div>
+            <p style="color: var(--muted); margin-top: 2rem; max-width: 700px; margin-left: auto; margin-right: auto;">
+                Key Flexbox properties: <strong>display: flex</strong> creates a flex container, <strong>flex-direction</strong> sets row or column layout, <strong>justify-content</strong> aligns items horizontally, <strong>align-items</strong> aligns items vertically, and <strong>gap</strong> creates space between items.
+            </p>
+        </section>
+<p style="text-align: center; color: var(--muted); margin-bottom: 2rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                CSS Grid is a two-dimensional layout system that lets you create complex grid layouts with rows and columns. It's more powerful than Flexbox for layouts requiring both horizontal and vertical control. Grid is ideal for page layouts, card galleries, and dashboard designs. You can create responsive grids without writing multiple media queries using smart grid features like <strong>auto-fit</strong> and <strong>auto-fill</strong>.
+            </p>
+            <div class="grid-demo">
+                <h3>Responsive Grid (auto-fit)</h3>
+                <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 1.5rem;">Watch how the grid items automatically adjust based on available space. No media queries needed!</p>
+                <div class="grid-container">
+                    <div class="grid-item">Card 1</div>
+                    <div class="grid-item">Card 2</div>
+                    <div class="grid-item">Card 3</div>
+                    <div class="grid-item">Card 4</div>
+                    <div class="grid-item">Card 5</div>
+                    <div class="grid-item">Card 6</div>
+                </div>
+            </div>
+            <p style="color: var(--muted); margin-top: 2rem; max-width: 700px; margin-left: auto; margin-right: auto;">
+                Key Grid properties: <strong>display: grid</strong> creates a grid container, <strong>grid-template-columns</strong> defines column sizes, <strong>gap</strong> creates space between grid items, and <strong>auto-fit/auto-fill</strong> makes grids beautifully responsive without needing breakpoint
+                </div>
+            </div>
+            <p style="text-align: center; color: var(--muted); margin-bottom: 2rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                Shadows and borders are essential tools for creating depth, visual hierarchy, and polish in your designs. Box shadows add dimension and can make elements appear to float or recede. Borders define and separate content. Together, they help guide user attention and improve the overall visual appeal of your website. Subtle shadows are often more effective than heavy ones.
+            </p>
+            <p style="color: var(--muted); margin-top: 1rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                CSS Grid is perfect for two-dimensional layouts. The <code>auto-fit</code> property makes it responsive without media queries.
+            </p>
+        </section>
+
+        <!-- SHADOWS & BORDERS -->
+        <section class="section container">
+            <h2>✨ Shadows & Borders</h2>
+            <div class="shadow-showcase">
+                <div class="shadow-box shadow-sm-demo">
+                    Small Shadow<br><small>0 2px 6px</small>
+                </div>
+                <div class="shadow-box shadow-md-demo">
+                    Medium Shadow<br><small>0 10px 30px</small>
+                </div>
+                <div class="shadow-box shadow-lg-demo">
+                    Large Shadow<br><small>0 20px 50px</small>
+                </div>
+                <div class="shadow-box border-accent">
+                    Accent Border<br><small>3px solid</small>
+                </div>
+                <div class="shadow-box border-rounded">
+                    Rounded Border<br><small>border-radius: 20px</small><!--0.5rem;">Transforms allow you to rotate, scale, skew, and translate elements in 2D or 3D space. Transitions smoothly animate changes between CSS property values. Together, they create interactive and engaging user experiences without requiring JavaScript. Key transforms include <strong>scale()</strong> for sizing, <strong>rotate()</strong> for spinning, <strong>translate()</strong> for moving, and <strong>skew()</strong> for distortion. Always pair transforms with smooth transitions for the best effect.</p>-->
+            <p style="text-align: center; color: var(--muted); margin-bottom: 1.5rem; font-size: 0.9rem;"><em>👉 Hover over each box to see the transformation effects</em>
+                </div>
+                <div class="shadow-box border-dashed">
+                    Dashed Border<br><small>2px dashed</small>
+                </div>
+            </div>
+        </section>
+
+        <!-- TRANSFORMS & TRANSITIONS -->
+        <section class="section container">
+            <h2>🎯 Transforms & Transitions</h2>
+            <p style="text-align: center; color: var(--muted); margin-bottom: 1.5rem;">Hover over each box to see the transformation effects</p>
+            <div class="transform-demo">
+                <div class="transform-box transform-scale">
+                    Scale<br><small>hover for effect</small>
+                </div>
+                <div class="transform-box transform-rotate">
+                    Rotate<br><small>hover for effect</small>
+                </div>
+             <p style="text-align: center; color: var(--muted); margin-bottom: 2rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                Gradients are smooth transitions between two or more colors. CSS supports three types: <strong>linear-gradient</strong> for color transitions along a line, <strong>radial-gradient</strong> for transitions radiating from a center point, and <strong>conic-gradient</strong> for rotational transitions. Gradients can replace images, reducing file size and improving performance. They're perfect for backgrounds, buttons, and visual effects. Use them subtly for professional results or boldly for dramatic impact.
+            </p>
+               <div class="transform-box transform-skew">
+                    Skew<br><small>hover for effect</small>
+                </div>
+                <div class="transform-box transform-translate">
+                    Translate<br><small>hover for effect</small>
+                </div>
+            </div>
+        </section>
+
+        <!-- GRADIENTS -->
+        <section class="section container">
+            <h2>🌈 Gradient Effects</h2>
+            <div class="gradient-grid">
+                <div class="gradient-box grad-linear">
+                    Linear Gradient
+                </div>
+               <div class="gradient-box grad-radial"><!-- 0.5rem;">Buttons are interactive elements that guide users to take action. Different button styles communicate different purposes: primary buttons for main actions, secondary for alternatives, success for positive outcomes, and danger for destructive actions. Always ensure buttons are easily clickable, clearly labeled, and visually distinct. Add hover effects to provide visual feedback and improve interactivity.</p>-->
+            <p style="text-align: center; color: var(--muted); margin-bottom: 1.5rem; font-size: 0.9rem;"><em>👉 Hover over buttons to see interactive effects</em>
+                    Radial Gradient
+                </div>
+                <div class="gradient-box grad-conic">
+                    Conic Gradient
+                </div>
+                <div class="gradient-box grad-multi">
+                    Multi-color Gradient
+                </div>
+            </div>
+        </section>
+<p style="text-align: center; color: var(--muted); margin-bottom: 2rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+                Cards are versatile containers for displaying grouped content. They're perfect for portfolios, product showcases, article listings, and feature displays. A well-designed card includes a visual element, headline, description, and call-to-action. Cards naturally work well with grid layouts and are inherently responsive. Use consistent spacing, shadows, and hover effects to make cards feel polished and interactive. Cards help users quickly scan and understand content.
+            </p>
+            
+        <!-- BUTTONS SHOWCASE -->
+        <section class="section container">
+            <h2>🔘 Button Styles</h2>
+            <p style="text-align: center; color: var(--muted); margin-bottom: 1.5rem;">Various button styles with hover effects</p>
+            <div class="buttons-demo">
+                <button class="btn btn-primary">Primary Button</button>
+                <button class="btn btn-secondary">Secondary Button</button>
+                <button class="btn btn-success">Success Button</button>
+                <button class="btn btn-danger">Danger Button</button>
+            </div>
+        </section>
+
+        <!-- CARDS -->
+        <section class="section container">
+            <h2>🎴 Card Components</h2>
+            <div class="cards-section">
+                <div class="card">
+                    <div class="card-image" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                        Responsive Cards
+                    </div>
+                    <div class="card-content">
+                        <h3>Card with Image</h3>
+                        <p>Cards are versatile components that can display content with images, text, and interactive elements.</p>
+                        <a href="#">Learn More →</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+                        Hover Effects
+                    </div>
+                    <div class="card-content">
+                        <h3>Interactive Card</h3>
+                        <p>Hover over the card to see smooth transitions including shadows, borders, and transforms.</p>
+                        <a href="#">Learn More →</a>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+                        Best Practices
+                    </div>
+                    <div class="card-content">
+                        <h3>CSS Best Practices</h3>
+                        <p>Use CSS variables, semantic HTML, and maintain consistent spacing and sizing throughout.</p>
+                        <a href="#">Learn More →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2026 CSS Master. All rights reserved. <a href="https://seleman.edgeone.dev" target="_blank" class="sele">Developed By <span style="color: white;">Sele</span><span style="color: rgb(95, 95, 245);">man</span></a>.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Open selected resource in a new tab and reset the select
+        (function(){
+            const sel = document.getElementById('resource-select');
+            if(!sel) return;
+            sel.addEventListener('change', function(){
+                const url = this.value;
+                if(!url) return;
+                // open in new tab
+                window.open(url, '_blank', 'noopener');
+                // reset to default
+                this.selectedIndex = 0;
+            });
+        })();
+    </script>
+</body>
+</html>
